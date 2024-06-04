@@ -1,10 +1,11 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Product } from '../../../shared/models/product.model';
 import { CommonModule } from '@angular/common';
 
 //Components
 import { HeaderComponent } from '../../../shared/components/header/header.component';
 import { ProductComponent } from '../../components/product/product.component';
+import { CartService } from '../../../shared/services/cart.service';
 
 
 
@@ -19,6 +20,8 @@ export class ListComponent {
 
   products = signal<Product[]>([])
 
+  private cartService = inject(CartService)
+
   constructor() {
     const initProducts: Product[] = [
       {
@@ -27,6 +30,7 @@ export class ListComponent {
         price: 100,
         image: 'https://picsum.photos/640/640?r=' + Math.random(),
         createdAt: new Date().toISOString(),
+        onCart: 0,
       },
       {
         id: Date.now(),
@@ -34,6 +38,7 @@ export class ListComponent {
         price: 100,
         image: 'https://picsum.photos/640/640?r=' + Math.random(),
         createdAt: new Date().toISOString(),
+        onCart: 0,
       },
       {
         id: Date.now(),
@@ -41,6 +46,7 @@ export class ListComponent {
         price: 100,
         image: 'https://picsum.photos/640/640?r=' + Math.random(),
         createdAt: new Date().toISOString(),
+        onCart: 0,
       },
       {
         id: Date.now(),
@@ -48,6 +54,7 @@ export class ListComponent {
         price: 100,
         image: 'https://picsum.photos/640/640?r=' + Math.random(),
         createdAt: new Date().toISOString(),
+        onCart: 0,
       },
       {
         id: Date.now(),
@@ -55,6 +62,7 @@ export class ListComponent {
         price: 100,
         image: 'https://picsum.photos/640/640?r=' + Math.random(),
         createdAt: new Date().toISOString(),
+        onCart: 0,
       },
       {
         id: Date.now(),
@@ -62,14 +70,15 @@ export class ListComponent {
         price: 100,
         image: 'https://picsum.photos/640/640?r=' + Math.random(),
         createdAt: new Date().toISOString(),
+        onCart: 0,
       },
     ];
     this.products.set(initProducts)
   }
 
-  fromChild(event: string) {
-    console.log('Este evento está siendo ejecutado desde el Padre')
-    console.log(event)
+  addToCart(product: Product) {
+    product.onCart = product.onCart+1
+    this.cartService.addToCart(product)
   }
 
   //imgURL = 'https://picsum.photos/640/640?r=' + (Math.random()*100).toFixed();
