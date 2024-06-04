@@ -1,14 +1,17 @@
 import { Component, signal } from '@angular/core';
-import { ProductComponent } from '../../components/product/product.component';
 import { Product } from '../../../shared/models/product.model';
 import { CommonModule } from '@angular/common';
+
+//Components
+import { HeaderComponent } from '../../../shared/components/header/header.component';
+import { ProductComponent } from '../../components/product/product.component';
 
 
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [ProductComponent, CommonModule],
+  imports: [ProductComponent, HeaderComponent, CommonModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
@@ -21,6 +24,27 @@ export class ListComponent {
       {
         id: Date.now(),
         title: 'Prod 1',
+        price: 100,
+        image: 'https://picsum.photos/640/640?r=' + Math.random(),
+        createdAt: new Date().toISOString(),
+      },
+      {
+        id: Date.now(),
+        title: 'Prod 2',
+        price: 100,
+        image: 'https://picsum.photos/640/640?r=' + Math.random(),
+        createdAt: new Date().toISOString(),
+      },
+      {
+        id: Date.now(),
+        title: 'Prod 2',
+        price: 100,
+        image: 'https://picsum.photos/640/640?r=' + Math.random(),
+        createdAt: new Date().toISOString(),
+      },
+      {
+        id: Date.now(),
+        title: 'Prod 2',
         price: 100,
         image: 'https://picsum.photos/640/640?r=' + Math.random(),
         createdAt: new Date().toISOString(),
