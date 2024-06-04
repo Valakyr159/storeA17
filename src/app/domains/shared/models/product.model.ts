@@ -2,7 +2,6 @@ export interface Product {
   id: number;
   title: string;
   price: number;
-  image: string;
-  createdAt: string;
-  onCart: number; 
+  images: string[];
+  creationAt: string;
 }
