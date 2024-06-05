@@ -17,6 +17,10 @@ export class ProductService {
     return this.http.get<Product[]>(this.url)
       .pipe(map(products => this.transformProducts(products)));
   }
+
+  getOne(id: string) {
+    return this.http.get<Product>(`https://api.escuelajs.co/api/v1/products/${id}`)
+  }
   
   private transformProducts(products: Product[]): Product[] {
     return products.map(product => {
