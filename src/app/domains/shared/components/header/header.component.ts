@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ProductComponent } from '../../../products/components/product/product.component';
 import { CartService } from '../../services/cart.service';
 import { RouterLinkActive, RouterLinkWithHref } from '@angular/router';
@@ -7,7 +7,7 @@ import { RouterLinkActive, RouterLinkWithHref } from '@angular/router';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, ProductComponent, RouterLinkWithHref, RouterLinkActive],
+  imports: [ProductComponent, RouterLinkWithHref, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
