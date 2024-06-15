@@ -10,11 +10,14 @@ export class ProductService {
 
   products = signal<Product[]>([]);
 
-  url: string = "https://api.escuelajs.co/api/v1/products";
   private http = inject(HttpClient);
 
-  getProducts() {
-    return this.http.get<Product[]>(this.url)
+  getProducts(category_id?: string) {
+    const url = new URL(`https://api.escuelajs.co/api/v1/products/`)
+    if (category_id) {
+      url.searchParams.set('categoryId', category_id)
+    }
+    return this.http.get<Product[]>(url.toString())
       .pipe(map(products => this.transformProducts(products)));
   }
 
@@ -30,11 +33,9 @@ export class ProductService {
         // Elimina comillas dobles        
         modifiedImage = modifiedImage.replace(/\[/g, '').replace(/\]/g, '');
         // Elimina corchetes        
-        console.log(modifiedImage)
         return modifiedImage;
         
       });
-      console.log(product, products)
       return {
         ...product,
         images: transformedImages
